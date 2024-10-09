@@ -8,12 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var text: String = ""
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            Text(text)
+                .font(.largeTitle)
+                .frame(height: 40)
+            
+            KeyboardView($text, leadingAction: {
+                
+                if !text.isEmpty {
+                    text.removeAll()
+                }
+                
+            }, trailingAction: {
+                
+                if !text.isEmpty {
+                    text.removeLast()
+                }
+                
+            })
         }
         .padding()
     }
